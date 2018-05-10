@@ -15,24 +15,33 @@
 #include <string>
 #include <vector>
 #include <cstring>
+#include <cmath>
 
 //you can include standard C++ libraries here
-
+using namespace std;
 
 // This function should return your name.
 // The name should match your name in Canvas
 
 void GetStudentName(std::string& your_name)
 {
-   //replace the placeholders "Firstname" and "Lastname"
-   //with you first name and last name 
-   your_name.assign("Firstname Lastname");
+  //replace the placeholders "Firstname" and "Lastname"
+  //with you first name and last name 
+  your_name.assign("Peter Nam");
 }
 
 int MinMatching (std::vector<int> x, std::vector<int> y)
 { 
-   
- //  return your value;
-   return -1;
+  sort(x.begin(),x.end());
+  sort(y.begin(),y.end());
+  int cost;
+  
+  while(!x.empty()) {
+    cost += abs(x.back() - y.back());
+    x.pop_back();
+    y.pop_back();
+  }
+  
+  return cost;
 }
 
