@@ -15,6 +15,8 @@
 #include <string>
 #include <vector> 
 
+using namespace std;
+
 //you can include standard C++ libraries here
 
 // This function should return your name.
@@ -22,9 +24,9 @@
 
 void GetStudentName(std::string& your_name)
 {
-   //replace the placeholders "Firstname" and "Lastname"
-   //with you first name and last name 
-   your_name.assign("Firstname Lastname");
+  //replace the placeholders "Firstname" and "Lastname"
+  //with you first name and last name 
+  your_name.assign("Peter Nam");
 }
 
 
@@ -34,12 +36,34 @@ void GetStudentName(std::string& your_name)
 //or 
 //int FindMeasure(std::vector<std::pair<int, int>> intervals, int coverage)
 
+
 int FindMeasure (std::vector<std::pair<int,int>> intervals, int coverage)
 {  
-   int measure = 0;
+  int measure = 0;
+  int count = 0;
+  
+  vector<pair<int,int>> times;
+  for (const pair<int,int> x : intervals) {
+    times.push_back(make_pair(x.first, 1));
+    times.push_back(make_pair(x.second, -1));
+  }
+  
+  sort(times.begin(), times.end());
+  int start = NULL;
+  
+  for (const pair<int,int> t : times) {
+    count += t.second;
+    if (start != NULL) {
+      measure += t.first - start;
+      start = NULL;
+    }
+    if(count == coverage) {
+      start = t.first;
+    }
+  }
+  
+  //your code goes here
 
-   //your code goes here
-
-   return measure;
+  return measure;
 }
 
